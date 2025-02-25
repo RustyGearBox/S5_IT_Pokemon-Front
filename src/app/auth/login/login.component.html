@@ -2,16 +2,29 @@
 <div class="container mt-5 d-flex justify-content-center align-items-center">
     <div class="col-md-4 mt-5 border p-4 rounded">
         <h1 class="text-center">Login</h1>
-        <form>
+        <form [formGroup]="loginForm">
             <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" formControlName="username">
+                <div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="text-alert">
+                    <div *ngIf="username?.errors?.['required']">
+                        Name is required.
+                    </div>
+                    <div *ngIf="username?.errors?.['minlength']">
+                        Name must be at least 4 characters long.
+                    </div>
+                </div>
             </div>
             <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" formControlName="password">
+                <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-alert">
+                    <div *ngIf="password?.errors?.['required']">
+                        Password is required.
+                    </div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" (click)="login()" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </div>
