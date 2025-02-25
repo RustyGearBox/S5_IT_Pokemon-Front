@@ -4,7 +4,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './auth/login/login.component';
 
 export const routes: Routes = [
-  {path:'',component:DashboardComponent},
+  {path:'',redirectTo:'/home',pathMatch:'full'},
+  {path:'home',component:DashboardComponent},
   {path:'login',component:LoginComponent}
 
 ];
